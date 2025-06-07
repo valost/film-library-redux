@@ -1,0 +1,34 @@
+@use '../../styles/variables' as variables;
+@use '../../styles/mixins' as mixins;
+
+.page {
+  min-height: 100vh;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.container {
+  // width: 100%;
+  background-color: #fff;
+  padding: 32px 16px;
+  border-radius: variables.$border-radius-big;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.cardContainer {
+  margin-top: 16px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  @include mixins.on-desktop {
+    padding: 24px;
+  }
+}

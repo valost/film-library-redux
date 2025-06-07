@@ -1,0 +1,37 @@
+@use '../../styles/mixins' as mixins;
+@use '../../styles/variables' as variables;
+
+.form {
+  display: flex;
+  gap: 8px;
+}
+
+.searchbar {
+  // width: 100%;
+  width: 220px;
+  padding: 8px 16px;
+  border: 1px solid #eef0ee;
+  border-radius: variables.$border-radius-small;
+
+  display: flex;
+  gap: 8px;
+
+  @include mixins.on-tablet {
+    width: 300px;
+  }
+}
+
+.input {
+  width: 100%;
+  border: none;
+  outline: none;
+
+  &:focus {
+    border: none;
+    outline: none;
+  }
+}
+
+.button {
+  @include mixins.purple-button;
+}

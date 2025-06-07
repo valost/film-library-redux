@@ -1,0 +1,46 @@
+@use './variables' as variables;
+
+@mixin on-tablet {
+  @media (min-width: variables.$tablet-width) {
+    @content;
+  }
+}
+
+@mixin on-desktop {
+  @media (min-width: variables.$laptop-width) {
+    @content;
+  }
+}
+
+@mixin purple-button {
+  padding: 10px 16px;
+  font-size: 16px;
+  color: #fff;
+  background-color: #8b5cf6;
+  border: none;
+  border-radius: variables.$border-radius-small;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: #051b79;
+  }
+}
+
+@mixin white-button {
+  padding: 10px 16px;
+  font-size: 16px;
+  color: #8b5cf6;
+  background-color: #fff;
+  border: 1px solid #8b5cf6;
+  border-radius: variables.$border-radius-small;
+  cursor: pointer;
+  transition: border 0.3s ease;
+  transition: color 0.3s ease;
+  text-align: center;
+
+  &:hover {
+    color: #051b79;
+    border: 1px solid #051b79;
+  }
+}

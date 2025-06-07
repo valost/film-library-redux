@@ -1,0 +1,37 @@
+@use './styles/mixins' as mixins;
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-size: 14px;
+
+  // @include mixins.on-tablet {
+  //   font-size: 14px;
+  // }
+}
+
+body {
+  height: 100vh;
+  min-width: 375px;
+  background: linear-gradient(to bottom, #012c72, #8b5cf6, #051b79);
+}
+
+h2 {
+  font-size: 18px;
+
+  @include mixins.on-tablet {
+    font-size: 32px;
+  }
+}
+
+h3 {
+  display: inline;
+  font-size: 16px;
+
+  @include mixins.on-tablet {
+    font-size: 18px;
+  }
+}
