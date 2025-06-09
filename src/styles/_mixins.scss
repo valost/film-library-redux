@@ -14,25 +14,30 @@
 
 @mixin purple-button {
   padding: 10px 16px;
-  font-size: 16px;
-  color: #fff;
-  background-color: #8b5cf6;
+  font-size: 12px;
+  color: variables.$color-white;
+  background-color: variables.$color-purple-light;
   border: none;
   border-radius: variables.$border-radius-small;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  text-align: center;
 
   &:hover {
-    background-color: #051b79;
+    background-color: variables.$color-blue-dark;
+  }
+
+  @include on-tablet {
+    font-size: 14px;
   }
 }
 
 @mixin white-button {
   padding: 10px 16px;
-  font-size: 16px;
-  color: #8b5cf6;
-  background-color: #fff;
-  border: 1px solid #8b5cf6;
+  font-size: 12px;
+  color: variables.$color-purple-light;
+  background-color: variables.$color-white;
+  border: 1px solid variables.$color-purple-light;
   border-radius: variables.$border-radius-small;
   cursor: pointer;
   transition: border 0.3s ease;
@@ -40,7 +45,36 @@
   text-align: center;
 
   &:hover {
-    color: #051b79;
-    border: 1px solid #051b79;
+    color: variables.$color-blue-dark;
+    border: 1px solid variables.$color-blue-dark;
   }
+
+  @include on-tablet {
+    font-size: 14px;
+  }
+}
+
+@mixin loading-button {
+  height: 36.5px;
+  background-color: variables.$color-grey-light;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &:hover {
+    background-color: variables.$color-grey-medium;
+  }
+}
+
+@mixin modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: variables.$color-semi-transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
 }

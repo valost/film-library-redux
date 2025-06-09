@@ -25,8 +25,15 @@ export default defineConfig([
       react: pluginReact,
       prettier: pluginPrettier,
     },
+    settings: {
+      react: {
+        version: 'detect',
+        jsxRuntime: 'automatic',
+      },
+    },
     rules: {
       ...pluginReact.configs.recommended.rules,
+      'react/react-in-jsx-scope': 'off',
       'prettier/prettier': 'error',
     },
   },

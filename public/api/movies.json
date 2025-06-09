@@ -3,19 +3,37 @@
     "title": "Blazing Saddles",
     "releaseYear": 1974,
     "format": "VHS",
-    "stars": ["Mel Brooks", "Clevon Little", "Harvey Korman", "Gene Wilder", "Slim Pickens", "Madeline Kahn"]
+    "stars": [
+      "Mel Brooks",
+      "Clevon Little",
+      "Harvey Korman",
+      "Gene Wilder",
+      "Slim Pickens",
+      "Madeline Kahn"
+    ]
   },
   {
     "title": "Casablanca",
     "releaseYear": 1942,
     "format": "DVD",
-    "stars": ["Humphrey Bogart", "Ingrid Bergman", "Claude Rains", "Peter Lorre"]
+    "stars": [
+      "Humphrey Bogart",
+      "Ingrid Bergman",
+      "Claude Rains",
+      "Peter Lorre"
+    ]
   },
   {
     "title": "Charade",
     "releaseYear": 1953,
     "format": "DVD",
-    "stars": ["Audrey Hepburn", "Cary Grant", "Walter Matthau", "James Coburn", "George Kennedy"]
+    "stars": [
+      "Audrey Hepburn",
+      "Cary Grant",
+      "Walter Matthau",
+      "James Coburn",
+      "George Kennedy"
+    ]
   },
   {
     "title": "Cool Hand Luke",
@@ -39,19 +57,40 @@
     "title": "The Muppet Movie",
     "releaseYear": 1979,
     "format": "DVD",
-    "stars": ["Jim Henson", "Frank Oz", "Dave Geolz", "Mel Brooks", "James Coburn", "Charles Durning", "Austin Pendleton"]
+    "stars": [
+      "Jim Henson",
+      "Frank Oz",
+      "Dave Geolz",
+      "Mel Brooks",
+      "James Coburn",
+      "Charles Durning",
+      "Austin Pendleton"
+    ]
   },
   {
     "title": "Get Shorty",
     "releaseYear": 1995,
     "format": "DVD",
-    "stars": ["John Travolta", "Danny DeVito", "Renne Russo", "Gene Hackman", "Dennis Farina"]
+    "stars": [
+      "John Travolta",
+      "Danny DeVito",
+      "Renne Russo",
+      "Gene Hackman",
+      "Dennis Farina"
+    ]
   },
   {
     "title": "My Cousin Vinny",
     "releaseYear": 1992,
     "format": "DVD",
-    "stars": ["Joe Pesci", "Marrisa Tomei", "Fred Gwynne", "Austin Pendleton", "Lane Smith", "Ralph Macchio"]
+    "stars": [
+      "Joe Pesci",
+      "Marrisa Tomei",
+      "Fred Gwynne",
+      "Austin Pendleton",
+      "Lane Smith",
+      "Ralph Macchio"
+    ]
   },
   {
     "title": "Gladiator",
@@ -63,7 +102,13 @@
     "title": "Star Wars",
     "releaseYear": 1977,
     "format": "Blu-Ray",
-    "stars": ["Harrison Ford", "Mark Hamill", "Carrie Fisher", "Alec Guinness", "James Earl Jones"]
+    "stars": [
+      "Harrison Ford",
+      "Mark Hamill",
+      "Carrie Fisher",
+      "Alec Guinness",
+      "James Earl Jones"
+    ]
   },
   {
     "title": "Raiders of the Lost Ark",
@@ -75,7 +120,18 @@
     "title": "Serenity",
     "releaseYear": 2005,
     "format": "Blu-Ray",
-    "stars": ["Nathan Fillion", "Alan Tudyk", "Adam Baldwin", "Ron Glass", "Jewel Staite", "Gina Torres", "Morena Baccarin", "Sean Maher", "Summer Glau", "Chiwetel Ejiofor"]
+    "stars": [
+      "Nathan Fillion",
+      "Alan Tudyk",
+      "Adam Baldwin",
+      "Ron Glass",
+      "Jewel Staite",
+      "Gina Torres",
+      "Morena Baccarin",
+      "Sean Maher",
+      "Summer Glau",
+      "Chiwetel Ejiofor"
+    ]
   },
   {
     "title": "Hooisers",
@@ -87,37 +143,73 @@
     "title": "WarGames",
     "releaseYear": 1983,
     "format": "VHS",
-    "stars": ["Matthew Broderick", "Ally Sheedy", "Dabney Coleman", "John Wood", "Barry Corbin"]
+    "stars": [
+      "Matthew Broderick",
+      "Ally Sheedy",
+      "Dabney Coleman",
+      "John Wood",
+      "Barry Corbin"
+    ]
   },
   {
     "title": "Spaceballs",
     "releaseYear": 1987,
     "format": "DVD",
-    "stars": ["Bill Pullman", "John Candy", "Mel Brooks", "Rick Moranis", "Daphne Zuniga", "Joan Rivers"]
+    "stars": [
+      "Bill Pullman",
+      "John Candy",
+      "Mel Brooks",
+      "Rick Moranis",
+      "Daphne Zuniga",
+      "Joan Rivers"
+    ]
   },
   {
     "title": "Young Frankenstein",
     "releaseYear": 1974,
     "format": "VHS",
-    "stars": ["Gene Wilder", "Kenneth Mars", "Terri Garr", "Gene Hackman", "Peter Boyle"]
+    "stars": [
+      "Gene Wilder",
+      "Kenneth Mars",
+      "Terri Garr",
+      "Gene Hackman",
+      "Peter Boyle"
+    ]
   },
   {
     "title": "Real Genius",
     "releaseYear": 1985,
     "format": "VHS",
-    "stars": ["Val Kilmer", "Gabe Jarret", "Michelle Meyrink", "William Atherton"]
+    "stars": [
+      "Val Kilmer",
+      "Gabe Jarret",
+      "Michelle Meyrink",
+      "William Atherton"
+    ]
   },
   {
     "title": "Top Gun",
     "releaseYear": 1986,
     "format": "DVD",
-    "stars": ["Tom Cruise", "Kelly McGillis", "Val Kilmer", "Anthony Edwards", "Tom Skerritt"]
+    "stars": [
+      "Tom Cruise",
+      "Kelly McGillis",
+      "Val Kilmer",
+      "Anthony Edwards",
+      "Tom Skerritt"
+    ]
   },
   {
     "title": "MASH",
     "releaseYear": 1970,
     "format": "DVD",
-    "stars": ["Donald Sutherland", "Elliot Gould", "Tom Skerritt", "Sally Kellerman", "Robert Duvall"]
+    "stars": [
+      "Donald Sutherland",
+      "Elliot Gould",
+      "Tom Skerritt",
+      "Sally Kellerman",
+      "Robert Duvall"
+    ]
   },
   {
     "title": "The Russians Are Coming, The Russians Are Coming",
@@ -129,13 +221,23 @@
     "title": "Jaws",
     "releaseYear": 1975,
     "format": "DVD",
-    "stars": ["Roy Scheider", "Robert Shaw", "Richard Dreyfuss", "Lorraine Gary"]
+    "stars": [
+      "Roy Scheider",
+      "Robert Shaw",
+      "Richard Dreyfuss",
+      "Lorraine Gary"
+    ]
   },
   {
     "title": "2001: A Space Odyssey",
     "releaseYear": 1968,
     "format": "DVD",
-    "stars": ["Keir Dullea", "Gary Lockwood", "William Sylvester", "Douglas Rain"]
+    "stars": [
+      "Keir Dullea",
+      "Gary Lockwood",
+      "William Sylvester",
+      "Douglas Rain"
+    ]
   },
   {
     "title": "Harvey",

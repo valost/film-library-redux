@@ -12,6 +12,23 @@
   justify-content: space-between;
   align-items: center;
   padding-inline: 16px;
+
+  @include mixins.on-desktop {
+    margin-inline: 32px;
+    margin-top: 32px;
+  }
+}
+
+.link {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  text-decoration: none;
+  color: #000;
+}
+
+.logo {
+  height: 32px;
 }
 
 .text {
@@ -20,6 +37,6 @@
 
 .button {
   text-decoration: none;
-  
-  @include mixins.purple-button
+
+  @include mixins.purple-button;
 }

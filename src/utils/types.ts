@@ -1,11 +1,27 @@
+export type NewUser = {
+  email: string;
+  name: string;
+  password: string;
+  confirmPassword: string;
+};
+
+export type Format = 'DVD' | 'VHS' | 'Blu-Ray';
+
+export type NewMovie = {
+  title: string;
+  year: number;
+  format: Format;
+  actors: string[];
+};
+
 export type Actor = {
   id: number;
   name: string;
   createdAt: string;
   updatedAt: string;
-}
+};
 
-export type MovieData = {
+export type Movie = {
   id: number;
   title: string;
   year: number;
@@ -13,9 +29,9 @@ export type MovieData = {
   actors: Actor[];
   createdAt: string;
   updatedAt: string;
-}
+};
 
-export type Movie = {
-  data: MovieData;
-  status: number;
-}
+// export type Movie = {
+//   data: MovieData;
+//   status: number;
+// };

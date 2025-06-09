@@ -3,7 +3,7 @@
 
 .card {
   position: relative;
-  width: 300px;
+  width: 100%;
   padding: 16px;
   border: 1px solid #d8dad8;
   border-radius: variables.$border-radius-small;
@@ -38,7 +38,7 @@
 .text {
   font-size: 14px;
 
- @include mixins.on-tablet {
+  @include mixins.on-tablet {
     font-size: 16px;
   }
 }

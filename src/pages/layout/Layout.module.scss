@@ -1,3 +1,9 @@
+@use '../../styles/mixins' as mixins;
+
 .main {
-  
+  margin-inline: 16px;
+
+  @include mixins.on-desktop {
+    margin-inline: 32px;
+  }
 }

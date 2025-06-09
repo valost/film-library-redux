@@ -1,0 +1,39 @@
+@use '../../styles/variables' as variables;
+@use '../../styles/mixins' as mixins;
+
+.modal {
+  background-color: variables.$color-white;
+  width: 80%;
+  max-height: 90vh;
+  padding: 32px;
+  border-radius: variables.$border-radius-big;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  @include mixins.on-tablet {
+    width: 300px;
+  }
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  justify-content: center;
+  align-items: center;
+}
+
+.image {
+  height: 120px;
+  width: 120px;
+}
+
+.button {
+  @include mixins.purple-button;
+}
+
+.text {
+  font-style: italic;
+  color: variables.$color-grey-dark;
+}
