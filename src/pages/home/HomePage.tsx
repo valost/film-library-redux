@@ -89,12 +89,6 @@ export function HomePage() {
           </>
         ) : (
           <>
-            <p className={styles.text}>Do you have account?</p>
-
-            <Link to="/login" className={styles.purpleButton}>
-              Log in
-            </Link>
-
             <p className={styles.text}>Are you new here?</p>
 
             <Link to="/register" className={styles.purpleButton}>

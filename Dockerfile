@@ -31,9 +31,12 @@ WORKDIR /app
 
 # Copy the built app from the previous stage
 COPY --from=build /app/dist /app
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
 
 # Expose the port the app will run on
 EXPOSE 3000
 
 # Command to serve the app
-CMD ["serve", "-s", ".", "-l", "3000"]
+# CMD ["serve", "-s", ".", "-l", "3000"]
+ENTRYPOINT ["/entrypoint.sh"]
