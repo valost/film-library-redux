@@ -21,7 +21,7 @@ RUN npm run build
 # If using Yarn, use: RUN yarn build
 
 # Use a lightweight web server to serve the built app
-FROM node:22
+FROM node:22 AS serve
 
 # Install a simple HTTP server to serve static files
 RUN npm install -g serve
@@ -30,10 +30,10 @@ RUN npm install -g serve
 WORKDIR /app
 
 # Copy the built app from the previous stage
-COPY --from=build /app/dist ./dist
+COPY --from=build /app/dist /app
 
 # Expose the port the app will run on
 EXPOSE 3000
 
 # Command to serve the app
-CMD ["serve", "-s", "dist", "-l", "3000"]
+CMD ["serve", "-s", ".", "-l", "3000"]
