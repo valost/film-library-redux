@@ -1,5 +1,5 @@
 import { useForm } from 'react-hook-form';
-import styles from './AddMovie.module.scss';
+import styles from './AddMoviePage.module.scss';
 import type { Format } from '../../utils/types';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { useEffect } from 'react';
@@ -18,7 +18,7 @@ type FormValues = {
   actors: string;
 };
 
-export function AddMovie() {
+export function AddMoviePage() {
   const {
     register,
     handleSubmit,
@@ -176,6 +176,16 @@ export function AddMovie() {
             className={`${styles.button} ${loading ? styles.isLoading : ''}`}
           >
             {loading ? <Loader /> : 'Add'}
+          </button>
+
+          <button
+            className={styles.buttonWhite}
+            onClick={() => {
+              reset();
+              navigate('/');
+            }}
+          >
+            Cancel
           </button>
         </form>
       </div>

@@ -14,6 +14,7 @@
 }
 
 .container {
+  width: 100%;
   background-color: variables.$color-white;
   padding: 32px 16px;
   border-radius: variables.$border-radius-big;
@@ -27,7 +28,8 @@
 .form {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 16px;
+  align-items: center;
 }
 
 .inputContainer {
@@ -40,8 +42,7 @@
 
 .input {
   outline: none;
-  width: 220px;
-  // max-width: 100%;
+  width: 250px;
   padding: 10px;
   border: 1px solid variables.$color-grey-light;
   border-radius: variables.$border-radius-small;
@@ -49,38 +50,26 @@
   text-align: center;
   margin-bottom: 16px;
   background-color: transparent;
-}
 
-.textarea {
-  outline: none;
-  width: 220px;
-  // max-width: 100%;
-  padding: 10px;
-  border: 1px solid variables.$color-grey-light;
-  border-radius: variables.$border-radius-small;
-  cursor: pointer;
-  margin-bottom: 16px;
-  background-color: transparent;
-  resize: vertical;
-}
-
-.smallText {
-  font-size: 10px;
-  font-style: italic;
-  color: variables.$color-grey-dark;
+  @include mixins.on-tablet {
+    width: 300px;
+  }
 }
 
 .button {
+  width: 200px;
+
   @include mixins.purple-button;
+}
+
+.buttonWhite {
+  width: 200px;
+
+  @include mixins.white-button;
 }
 
 .isLoading {
   @include mixins.loading-button;
-}
-
-.error {
-  color: variables.$color-red;
-  text-align: center;
 }
 
 .errorMessage {
@@ -88,4 +77,8 @@
   bottom: 0;
   font-size: 10px;
   color: variables.$color-red;
+}
+
+.modalOverlay {
+  @include mixins.modal-overlay;
 }

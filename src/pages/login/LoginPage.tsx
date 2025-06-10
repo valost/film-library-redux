@@ -103,10 +103,6 @@ export function LoginPage() {
             )}
           </div>
 
-          {error && typeof error === 'string' && (
-            <p className={styles.error}>{error}</p>
-          )}
-
           <button
             type="submit"
             className={`${styles.button} ${loading ? styles.isLoading : ''}`}

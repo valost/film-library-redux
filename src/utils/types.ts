@@ -31,7 +31,11 @@ export type Movie = {
   updatedAt: string;
 };
 
-// export type Movie = {
-//   data: MovieData;
-//   status: number;
-// };
+export type MovieWithoutActors = {
+  id: number;
+  title: string;
+  year: number;
+  format: string;
+  createdAt: string;
+  updatedAt: string;
+};

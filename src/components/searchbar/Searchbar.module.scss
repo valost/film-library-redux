@@ -2,6 +2,7 @@
 @use '../../styles/variables' as variables;
 
 .form {
+  position: relative;
   display: flex;
   gap: 8px;
 }
@@ -34,4 +35,13 @@
 
 .button {
   @include mixins.purple-button;
+}
+
+.errorMessage {
+  color: variables.$color-red;
+  font-size: 10px;
+  position: absolute;
+  bottom: -16px;
+  left: 50%;
+  transform: translateX(-50%);
 }

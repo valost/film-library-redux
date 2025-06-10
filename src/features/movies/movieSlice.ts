@@ -1,10 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
-import type { Movie } from '../../utils/types';
+import type { Movie, MovieWithoutActors } from '../../utils/types';
 import {
   addMovie,
   deleteMovie,
+  importMovieList,
   showAllMovies,
   showMovieById,
+  showMoviesByQuery,
 } from './movieActions';
 
 type MovieState = {
@@ -12,9 +14,10 @@ type MovieState = {
   success: boolean;
   error: string | null;
   addedMovie: Movie | null;
-  allMovies: Movie[];
+  allMovies: MovieWithoutActors[];
   selectedMovie: Movie | null;
   movieToDelete: Movie | null;
+  moviesByQuery: MovieWithoutActors[];
 };
 
 const initialState: MovieState = {
@@ -25,6 +28,7 @@ const initialState: MovieState = {
   allMovies: [],
   selectedMovie: null,
   movieToDelete: null,
+  moviesByQuery: [],
 };
 
 const movieSlice = createSlice({
@@ -36,6 +40,9 @@ const movieSlice = createSlice({
       state.success = false;
       state.error = null;
       state.addedMovie = null;
+    },
+    clearMoviesByQuery: (state) => {
+      state.moviesByQuery = [];
     },
   },
   extraReducers: (builder) => {
@@ -96,9 +103,42 @@ const movieSlice = createSlice({
       .addCase(deleteMovie.rejected, (state, { payload }) => {
         state.loading = false;
         state.error = payload ?? 'Failed to load movie';
+      })
+      // show movie by query
+      .addCase(showMoviesByQuery.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(showMoviesByQuery.fulfilled, (state, { payload }) => {
+        state.loading = false;
+        state.moviesByQuery = payload;
+      })
+      .addCase(showMoviesByQuery.rejected, (state, { payload }) => {
+        state.loading = false;
+        state.error = payload ?? 'Failed to load movies by query';
+      })
+      // import movie list
+      .addCase(importMovieList.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+        state.success = false;
+      })
+      .addCase(importMovieList.fulfilled, (state, { payload }) => {
+        state.loading = false;
+        state.success = true;
+
+        if (payload?.data) {
+          state.allMovies = [...state.allMovies, ...payload.data];
+        } else {
+          state.allMovies = [...state.allMovies];
+        }
+      })
+      .addCase(importMovieList.rejected, (state, { payload }) => {
+        state.loading = false;
+        state.error = payload ?? 'Failed to add movie';
       });
   },
 });
 
-export const { resetMovieState } = movieSlice.actions;
+export const { resetMovieState, clearMoviesByQuery } = movieSlice.actions;
 export default movieSlice.reducer;

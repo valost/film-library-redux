@@ -1,6 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import type { Movie, NewMovie } from '../../utils/types';
+import type { Movie, MovieWithoutActors, NewMovie } from '../../utils/types';
 import { BASE_API_URL } from '../../utils/constants';
+import type { MovieImportApiResponse } from '../../utils/apiResponseTypes';
 
 export const addMovie = createAsyncThunk<
   Movie,
@@ -43,7 +44,7 @@ export const addMovie = createAsyncThunk<
   },
 );
 
-export const showAllMovies = createAsyncThunk<Movie[]>(
+export const showAllMovies = createAsyncThunk<MovieWithoutActors[]>(
   'movie/showAll',
   async (_, { rejectWithValue }) => {
     try {
@@ -139,3 +140,66 @@ export const deleteMovie = createAsyncThunk<
     return rejectWithValue(message);
   }
 });
+
+export const importMovieList = createAsyncThunk<
+  MovieImportApiResponse,
+  FormData,
+  { rejectValue: string }
+>('movie/uploadList', async (formData, { rejectWithValue }) => {
+  try {
+    const token = localStorage.getItem('token');
+
+    const response = await fetch(`${BASE_API_URL}/movies/import`, {
+      method: 'POST',
+      headers: {
+        Authorization: token || '',
+      },
+      body: formData,
+    });
+
+    const result = await response.json();
+
+    if (!response.ok) {
+      return rejectWithValue(
+        result.error || `Registration failed with status ${response.status}`,
+      );
+    }
+
+    return result.data;
+  } catch (error: unknown) {
+    const message =
+      error instanceof Error ? error.message : 'Something went wrong!';
+    return rejectWithValue(message);
+  }
+});
+
+export const showMoviesByQuery = createAsyncThunk<MovieWithoutActors[], string>(
+  'movie/showByQuery',
+  async (query, { rejectWithValue }) => {
+    try {
+      const token = localStorage.getItem('token');
+
+      const response = await fetch(`${BASE_API_URL}/movies?search=${query}`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: token || '',
+        },
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        return rejectWithValue(
+          result.error || `Registration failed with status ${response.status}`,
+        );
+      }
+
+      return result.data;
+    } catch (error: unknown) {
+      const message =
+        error instanceof Error ? error.message : 'Something went wrong!';
+      return rejectWithValue(message);
+    }
+  },
+);

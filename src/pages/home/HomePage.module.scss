@@ -41,14 +41,52 @@
   }
 }
 
+.card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid variables.$color-grey-medium;
+  padding: 16px;
+  border-radius: variables.$border-radius-big;
+  transition: box-shadow 0.3s ease;
+
+  &:hover {
+    box-shadow: 0px 4px 10px 0px rgba(21, 71, 15, 0.3);
+  }
+}
+
 .text {
   font-size: 16px;
 }
 
 .button {
-  text-align: center;
-  width: 200px;
-  text-decoration: none;
+  cursor: pointer;
 
   @include mixins.purple-button;
+}
+
+.purpleButton {
+  cursor: pointer;
+  text-decoration: none;
+  width: 200px;
+
+  @include mixins.purple-button;
+}
+
+.whiteButton {
+  text-align: center;
+  width: 200px;
+
+  @include mixins.white-button;
+}
+
+.wrapper {
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.modalOverlay {
+  @include mixins.modal-overlay;
 }

@@ -15,7 +15,6 @@ import { Link } from 'react-router-dom';
 
 export function MoviesPage() {
   const dispatch = useAppDispatch();
-
   const movies = useAppSelector((state) => state.movie.allMovies);
   const loading = useAppSelector((state) => state.movie.loading);
   const error = useAppSelector((state) => state.movie.error);
@@ -108,7 +107,10 @@ export function MoviesPage() {
             {movieModal && selectedMovie && (
               <div className={styles.modalOverlay}>
                 <MovieModal
-                  onClose={() => setMovieModal(false)}
+                  onClose={() => {
+                    setMovieModal(false);
+                    setSelectedMovieId(null);
+                  }}
                   movie={selectedMovie}
                 />
               </div>
