@@ -58,6 +58,8 @@ export function HomePage() {
                           setMovieModal(true);
                           setSelectedMovieId(movie.id);
                           dispatch(showMovieById(movie.id));
+
+                          console.log(selectedMovieId);
                         }}
                         className={styles.button}
                       >
