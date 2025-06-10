@@ -9,7 +9,7 @@ import { UploadMoviesPage } from './pages/upload-movies/UploadMoviesPage';
 
 export function Routing() {
   return (
-    <HashRouter basename="/movie-library/">
+    <HashRouter basename="/">
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<HomePage />} />
