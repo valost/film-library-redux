@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { BASE_API_URL } from '../../utils/constants';
 import type { NewUser } from '../../utils/types';
 import { jwtDecode } from 'jwt-decode';
+import { BASE_API_URL } from '../../utils/constants';
 
 export type JwtPayload = {
   id: number;

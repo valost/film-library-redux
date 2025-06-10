@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import type { Movie, MovieWithoutActors, NewMovie } from '../../utils/types';
-import { BASE_API_URL } from '../../utils/constants';
 import type { MovieImportApiResponse } from '../../utils/apiResponseTypes';
+import { BASE_API_URL } from '../../utils/constants';
 
 export const addMovie = createAsyncThunk<
   Movie,
@@ -51,7 +51,7 @@ export const showAllMovies = createAsyncThunk<MovieWithoutActors[]>(
       const token = localStorage.getItem('token');
 
       const response = await fetch(
-        `${BASE_API_URL}/movies?sort=title&order=ASC`,
+        `${BASE_API_URL}/movies?sort=title&order=ASC&limit=30`,
         {
           method: 'GET',
           headers: {

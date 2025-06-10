@@ -6,7 +6,6 @@ import { useEffect } from 'react';
 import { addMovie } from '../../features/movies/movieActions';
 import { useNavigate } from 'react-router-dom';
 import Loader from '../../components/loader/Loader';
-import { Dropdown } from '../../components/dropdown/Dropdown';
 import { resetMovieState } from '../../features/movies/movieSlice';
 
 const formats = ['VHS', 'DVD', 'Blu-Ray'];
@@ -36,7 +35,6 @@ export function AddMoviePage() {
   const { loading, error, success } = useAppSelector((state) => state.movie);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  // const methods = useForm();
 
   useEffect(() => {
     if (success) {
@@ -47,8 +45,6 @@ export function AddMoviePage() {
   }, [dispatch, success, reset, navigate]);
 
   const submitForm = (data: FormValues) => {
-    console.log('data:', data);
-
     const actorsArr = data.actors
       .split(',')
       .map((name) => name.trim())

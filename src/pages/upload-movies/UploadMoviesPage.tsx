@@ -5,11 +5,12 @@ import styles from './UploadMovies.module.scss';
 import { useForm } from 'react-hook-form';
 import { useEffect, useState } from 'react';
 import { ErrorModal } from '../../components/error-modal/ErrorModal';
-import { importMovieList } from '../../features/movies/movieActions';
+import { addMovie } from '../../features/movies/movieActions';
 import { resetMovieState } from '../../features/movies/movieSlice';
+import { parseMovieTextFile } from '../../utils/parseMovieTextFile';
 
 type FormValues = {
-  movies: FileList;
+  file: FileList;
 };
 
 export function UploadMoviesPage() {
@@ -24,6 +25,7 @@ export function UploadMoviesPage() {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const [errorModal, setErrorModal] = useState(false);
+  const [fileError, setFileError] = useState<string>('');
 
   useEffect(() => {
     if (error) {
@@ -34,8 +36,8 @@ export function UploadMoviesPage() {
   useEffect(() => {
     if (success) {
       reset();
-      navigate('/all-movies');
       dispatch(resetMovieState());
+      navigate('/all-movies');
     }
   }, [success, navigate, reset, dispatch]);
 
@@ -47,12 +49,71 @@ export function UploadMoviesPage() {
     }
   }, [errorModal]);
 
-  const submitForm = ({ movies }: FormValues) => {
-    const formData = new FormData();
-    console.log(movies[0]);
+  // const submitForm = ({ movies }: FormValues) => {
+  //   const formData = new FormData();
+  //   console.log(movies[0]);
 
-    formData.append('movies', movies[0]);
-    dispatch(importMovieList(formData));
+  //   formData.append('movies', movies[0]);
+  //   dispatch(importMovieList(formData));
+  // };
+
+  const submitForm = async (data: FormValues) => {
+    setFileError('');
+
+    try {
+      const file = data.file[0];
+
+      if (!file) return;
+
+      if (file.type !== 'text/plain') {
+        setFileError('Please upload a .txt file');
+        setErrorModal(true);
+        return;
+      }
+
+      const reader = new FileReader();
+
+      reader.onload = async (event) => {
+        try {
+          const content = event.target?.result as string;
+
+          // console.log(content);
+
+          const movies = parseMovieTextFile(content);
+
+          // console.log(movies);
+
+          for (const movie of movies) {
+            console.log('movie:', movie);
+
+            await dispatch(addMovie(movie)).unwrap();
+          }
+
+          reset();
+        } catch (err: unknown) {
+          const message =
+            err instanceof Error ? err.message : 'Failed to parse file';
+
+          setFileError(message);
+          setErrorModal(true);
+
+          console.log(fileError);
+        }
+      };
+
+      reader.onerror = () => {
+        setFileError('Failed to read file');
+        setErrorModal(true);
+      };
+
+      reader.readAsText(file);
+    } catch (err: unknown) {
+      const message =
+        err instanceof Error ? err.message : 'Failed to parse file';
+
+      setFileError(message);
+      setErrorModal(true);
+    }
   };
 
   return (
@@ -68,15 +129,13 @@ export function UploadMoviesPage() {
               type="file"
               accept=".txt"
               id="movies"
-              {...register('movies', {
+              {...register('file', {
                 required: 'Please choose file',
               })}
             />
 
-            {errors.movies && (
-              <span className={styles.errorMessage}>
-                {errors.movies.message}
-              </span>
+            {errors.file && (
+              <span className={styles.errorMessage}>{errors.file.message}</span>
             )}
           </div>
 
@@ -99,7 +158,10 @@ export function UploadMoviesPage() {
 
           {errorModal && error && typeof error === 'string' && (
             <div className={styles.modalOverlay}>
-              <ErrorModal error={error} onClose={() => setErrorModal(false)} />
+              <ErrorModal
+                error={fileError}
+                onClose={() => setErrorModal(false)}
+              />
             </div>
           )}
         </form>

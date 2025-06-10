@@ -13,7 +13,7 @@ export function MovieModal({ onClose, movie }: Props) {
       <div className={styles.container}>
         <p className={styles.text}>{`id: ${movie.id}`}</p>
         <img className={styles.image} src={PopcormImg} alt="Popcorn" />
-        <h3>{movie.title}</h3>
+        <h3 className={styles.title}>{movie.title}</h3>
         <p>{movie.year}</p>
 
         <p>Actors:</p>
