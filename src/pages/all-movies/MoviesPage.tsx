@@ -87,6 +87,8 @@ export function MoviesPage() {
                         setMovieModal(true);
                         setSelectedMovieId(card.id);
                         dispatch(showMovieById(card.id));
+
+                        console.log(selectedMovieId);
                       }}
                       className={styles.purpleButton}
                     >
