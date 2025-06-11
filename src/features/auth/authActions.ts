@@ -89,7 +89,7 @@ export const loginUser = createAsyncThunk<
     const token = data.token;
 
     if (typeof token !== 'string' || !token) {
-      return rejectWithValue('Invalid token received');
+      return rejectWithValue('Wrong credentials');
     }
 
     const user = jwtDecode<JwtPayload>(token);

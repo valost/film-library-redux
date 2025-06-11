@@ -39,3 +39,11 @@ export type MovieWithoutActors = {
   createdAt: string;
   updatedAt: string;
 };
+
+export type MovieUploadError = {
+  status: number;
+  error: {
+    code: string;
+    fields?: Record<string, string>;
+  };
+};

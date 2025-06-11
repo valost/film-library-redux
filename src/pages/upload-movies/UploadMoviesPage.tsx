@@ -7,7 +7,11 @@ import { useEffect, useState } from 'react';
 import { ErrorModal } from '../../components/error-modal/ErrorModal';
 import { addMovie } from '../../features/movies/movieActions';
 import { resetMovieState } from '../../features/movies/movieSlice';
-import { parseMovieTextFile } from '../../utils/parseMovieTextFile';
+import {
+  parseMovieTextFile,
+  readFileAsText,
+} from '../../utils/parseMovieTextFile';
+import type { MovieUploadError } from '../../utils/types';
 
 type FormValues = {
   file: FileList;
@@ -21,25 +25,21 @@ export function UploadMoviesPage() {
     formState: { errors },
   } = useForm<FormValues>();
 
-  const { loading, error, success } = useAppSelector((state) => state.movie);
+  const { loading, error } = useAppSelector((state) => state.movie);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const [errorModal, setErrorModal] = useState(false);
   const [fileError, setFileError] = useState<string>('');
 
   useEffect(() => {
+    dispatch(resetMovieState());
+  }, [dispatch]);
+
+  useEffect(() => {
     if (error) {
       setErrorModal(true);
     }
   }, [error]);
-
-  useEffect(() => {
-    if (success) {
-      reset();
-      dispatch(resetMovieState());
-      navigate('/all-movies');
-    }
-  }, [success, navigate, reset, dispatch]);
 
   useEffect(() => {
     if (errorModal) {
@@ -59,6 +59,10 @@ export function UploadMoviesPage() {
 
   const submitForm = async (data: FormValues) => {
     setFileError('');
+    setErrorModal(false);
+    dispatch(resetMovieState());
+
+    let hasError = false;
 
     try {
       const file = data.file[0];
@@ -68,51 +72,57 @@ export function UploadMoviesPage() {
       if (file.type !== 'text/plain') {
         setFileError('Please upload a .txt file');
         setErrorModal(true);
+        hasError = true;
         return;
       }
 
-      const reader = new FileReader();
+      const content = await readFileAsText(file);
 
-      reader.onload = async (event) => {
+      let movies;
+
+      try {
+        movies = parseMovieTextFile(content);
+      } catch (parseError: unknown) {
+        setFileError(
+          parseError instanceof Error
+            ? parseError.message
+            : 'Invalid movie details format',
+        );
+        setErrorModal(true);
+        hasError = true;
+        return;
+      }
+
+      for (const movie of movies) {
         try {
-          const content = event.target?.result as string;
+          await dispatch(addMovie(movie)).unwrap();
+        } catch (err) {
+          const error = err as MovieUploadError;
 
-          // console.log(content);
-
-          const movies = parseMovieTextFile(content);
-
-          // console.log(movies);
-
-          for (const movie of movies) {
-            console.log('movie:', movie);
-
-            await dispatch(addMovie(movie)).unwrap();
+          if (error?.error?.code === 'FORMAT_ERROR') {
+            setFileError(
+              'The uploaded file contains movies with missing or wrong fields.',
+            );
+          } else {
+            setFileError('An error occurred while uploading the file.');
           }
 
-          reset();
-        } catch (err: unknown) {
-          const message =
-            err instanceof Error ? err.message : 'Failed to parse file';
-
-          setFileError(message);
           setErrorModal(true);
-
-          console.log(fileError);
+          hasError = true;
+          break;
         }
-      };
+      }
 
-      reader.onerror = () => {
-        setFileError('Failed to read file');
-        setErrorModal(true);
-      };
-
-      reader.readAsText(file);
+      if (!hasError) {
+        reset();
+        navigate('/all-movies');
+      }
     } catch (err: unknown) {
       const message =
         err instanceof Error ? err.message : 'Failed to parse file';
-
       setFileError(message);
       setErrorModal(true);
+      hasError = true;
     }
   };
 
@@ -156,7 +166,7 @@ export function UploadMoviesPage() {
             Cancel
           </button>
 
-          {errorModal && error && typeof error === 'string' && (
+          {errorModal && fileError && (
             <div className={styles.modalOverlay}>
               <ErrorModal
                 error={fileError}

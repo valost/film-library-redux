@@ -22,8 +22,10 @@ export function HomePage() {
 
   const [selectedMovieId, setSelectedMovieId] = useState<number | null>(null);
   const [movieModal, setMovieModal] = useState(false);
+  const [hasQuerySearched, setHasQuerySearched] = useState(false);
 
   const handleSearch = (query: string) => {
+    setHasQuerySearched(true);
     dispatch(showMoviesByQuery(query));
   };
 
@@ -71,7 +73,9 @@ export function HomePage() {
               </>
             )}
 
-            {error && <p>No movies found. 😕</p>}
+            {!loading && !error && hasQuerySearched && movies.length === 0 && (
+              <p>No movies found. 😕</p>
+            )}
 
             <div className={styles.wrapper}>
               <Link to="/all-movies" className={styles.purpleButton}>
