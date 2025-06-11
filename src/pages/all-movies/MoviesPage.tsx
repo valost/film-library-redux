@@ -38,11 +38,11 @@ export function MoviesPage() {
     }
   }, [movieModal]);
 
-  const allPages = Math.ceil(movies.length / cardsPerPage);
+  const allPages = Math.ceil(movies?.length / cardsPerPage);
 
   const indexOfLastCard = currentPage * cardsPerPage;
   const indexOfFirstCard = indexOfLastCard - cardsPerPage;
-  const currentCards = movies.slice(indexOfFirstCard, indexOfLastCard);
+  const currentCards = movies?.slice(indexOfFirstCard, indexOfLastCard);
 
   const handleDeleteMovie = async (id: number) => {
     const isLastItemOnPage = currentCards.length === 1 && currentPage > 1;
